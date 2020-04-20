@@ -45,6 +45,14 @@ pipeline {
             bat label: '', script: 'C:\\ProgramData\\chocolatey\\bin\\nuget.exe restore sylectus-edi-processor/EDIProcessor.sln'  
         }
       }
+      stage('Pre-build dependencies '){
+        steps{
+            //TARGET net framework v4.6.1 /p:TargetFrameworkVersion=v4.6.1
+            bat "\"${tool 'MSBuildLocal'}\" sylectus-lib-sylectus/trunk/SylectusLibrary.sln /p:Configuration=Release /p:Platform=\"Any CPU\"   /target:rebuild /p:ProductVersion=1.0.0.${env.BUILD_NUMBER}"
+        }
+      }
+      
+      
       stage('Build of the solution '){
         steps{
             //TARGET net framework v4.6.1 /p:TargetFrameworkVersion=v4.6.1
