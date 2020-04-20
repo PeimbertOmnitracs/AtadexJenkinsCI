@@ -48,7 +48,8 @@ pipeline {
       stage('Pre-build dependencies '){
         steps{
             //TARGET net framework v4.6.1 /p:TargetFrameworkVersion=v4.6.1
-            bat "\"${tool 'MSBuildLocal'}\" sylectus-lib-sylectus-security-util/trunk/Sylectus.SecurityUtil.sln /p:Configuration=Release;Platform=\"Any CPU\";AdditionalLibPaths='sylectus-lib-sylectus/trunk/';TargetFrameworkVersion=v4.5.2  /target:rebuild /p:ProductVersion=1.0.0.${env.BUILD_NUMBER}"
+            //bat "\"${tool 'MSBuildLocal'}\" sylectus-lib-sylectus-security-util/trunk/Sylectus.SecurityUtil.sln /p:Configuration=Release;Platform=\"Any CPU\";AdditionalLibPaths='sylectus-lib-sylectus/trunk/';TargetFrameworkVersion=v4.5.2  /target:rebuild /p:ProductVersion=1.0.0.${env.BUILD_NUMBER}"
+            bat "\"${tool 'MSBuildLocal'}\" sylectus-lib-sylectus/trunk/SylectusLibrary.sln /p:Configuration=Release;Platform=\"Any CPU\";AdditionalLibPaths='sylectus-lib-sylectus/trunk/';TargetFrameworkVersion=v4.5.2  /target:rebuild /p:ProductVersion=1.0.0.${env.BUILD_NUMBER}"
            
             //bat "\"${tool 'MSBuildLocal'}\" sylectus-lib-sylectus/trunk/SylectusLibrary.sln /p:Configuration=Release /p:Platform=\"Any CPU\"   /target:rebuild /p:ProductVersion=1.0.0.${env.BUILD_NUMBER}"
         }
