@@ -47,9 +47,11 @@ pipeline {
       }
       stage('Restore dependencie packages'){
          steps{
+		   echo '************************** RESTORE DEPENDENCIE PACKAGES *************************' 
            bat label: '', script: 'C:\\ProgramData\\chocolatey\\bin\\nuget.exe restore sylectus-lib-sylectus/trunk/SylectusLibrary.sln'
            bat label: '', script: 'C:\\ProgramData\\chocolatey\\bin\\nuget.exe restore sylectus-lib-sylectus-security-util/trunk/Sylectus.SecurityUtil.sln'
            bat label: '', script: 'C:\\ProgramData\\chocolatey\\bin\\nuget.exe restore sylectus-lib-sylectus-geo-services/trunk/Sylectus.Geoservices.sln'
+		   bat label: '', script: 'C:\\ProgramData\\chocolatey\\bin\\nuget.exe restore sylectus-lib-sylectus-core/Sylectus.Core/Sylectus.Core.sln'
 
          }
       }
@@ -60,7 +62,8 @@ pipeline {
             echo '************************** BUILD DEPENDENCIES *************************' 
             //TARGET net framework v4.6.1 /p:TargetFrameworkVersion=v4.6.1
             //bat "\"${tool 'MSBuildLocal'}\" sylectus-lib-sylectus-security-util/trunk/Sylectus.SecurityUtil.sln /p:Configuration=Release;Platform=\"Any CPU\";AdditionalLibPaths='sylectus-lib-sylectus/trunk/';TargetFrameworkVersion=v4.5.2  /target:rebuild /p:ProductVersion=1.0.0.${env.BUILD_NUMBER}"
-            bat "\"${tool 'MSBuildLocal'}\" sylectus-edi-processor/EDIProcessor.sln /p:Configuration=Release;Platform=\"Any CPU\";TargetFrameworkVersion=v4.6 /target:rebuild /p:ProductVersion=1.0.0.${env.BUILD_NUMBER}"
+            //bat "\"${tool 'MSBuildLocal'}\" sylectus-lib-sylectus-core/Sylectus.Core/Sylectus.Core.sln /p:Configuration=Release;Platform=\"Any CPU\";TargetFrameworkVersion=v4.6 /target:rebuild /p:ProductVersion=1.0.0.${env.BUILD_NUMBER}"
+			bat "\"${tool 'MSBuildLocal'}\" sylectus-edi-processor/EDIProcessor.sln /p:Configuration=Release;Platform=\"Any CPU\";TargetFrameworkVersion=v4.6 /target:rebuild /p:ProductVersion=1.0.0.${env.BUILD_NUMBER}"
            
             //bat "\"${tool 'MSBuildLocal'}\" sylectus-lib-sylectus/trunk/SylectusLibrary.sln /p:Configuration=Release /p:Platform=\"Any CPU\"   /target:rebuild /p:ProductVersion=1.0.0.${env.BUILD_NUMBER}"
         }
