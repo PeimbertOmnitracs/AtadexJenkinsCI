@@ -64,7 +64,8 @@ pipeline {
             //bat "\"${tool 'MSBuildLocal'}\" sylectus-lib-sylectus-security-util/trunk/Sylectus.SecurityUtil.sln /p:Configuration=Release;Platform=\"Any CPU\";AdditionalLibPaths='sylectus-lib-sylectus/trunk/';TargetFrameworkVersion=v4.5.2  /target:rebuild /p:ProductVersion=1.0.0.${env.BUILD_NUMBER}"
             //bat "\"${tool 'MSBuildLocal'}\" sylectus-lib-sylectus-core/Sylectus.Core/Sylectus.Core.sln /p:Configuration=Release;Platform=\"Any CPU\";TargetFrameworkVersion=v4.6 /target:rebuild /p:ProductVersion=1.0.0.${env.BUILD_NUMBER}"
 			bat "\"${tool 'MSBuildLocal'}\" sylectus-edi-processor/EDIProcessor.sln /p:Configuration=Release;Platform=\"Any CPU\";TargetFrameworkVersion=v4.6 /target:rebuild /p:ProductVersion=1.0.0.${env.BUILD_NUMBER}"
-           
+            bat "\"${tool 'MSBuildLocal'}\" sylectus-edi-processor/EDIAPI/EDIAPI.csproj /p:DeployOnBuild=true /p:PublishProfile=FolderProfile"
+
             //bat "\"${tool 'MSBuildLocal'}\" sylectus-lib-sylectus/trunk/SylectusLibrary.sln /p:Configuration=Release /p:Platform=\"Any CPU\"   /target:rebuild /p:ProductVersion=1.0.0.${env.BUILD_NUMBER}"
         }
       }
