@@ -4,7 +4,7 @@ pipeline {
       stage('Checkout code') {
          steps {
             dir('sylectus-edi-processor') {
-                git credentialsId: '04a6a3f5-a14e-457d-9a94-a61acfcf7e1b', url: 'https://github.com/Omnitracs/sylectus-edi-processor.git'
+                git credentialsId: '04a6a3f5-a14e-457d-9a94-a61acfcf7e1b', git branch: 'develop'; url: 'https://github.com/Omnitracs/sylectus-edi-processor.git'
             }
             dir('sylectus-log-utils') {
                 git credentialsId: '04a6a3f5-a14e-457d-9a94-a61acfcf7e1b', url: 'https://github.com/Omnitracs/sylectus-log-utils.git'
@@ -70,6 +70,11 @@ pipeline {
         }
       }
       
+
+      /*So far the project builds, the next step is to copy the output of the output of EDIAPI publish folder and HangfireRelease Folder and the XML files when changes.
+      *then put those into a folder with the date yyyy.mm.dd-Staging
+      *Trigger the build with every commit to development.
+      */
       
      /*  stage('Build of the solution '){
         steps{
