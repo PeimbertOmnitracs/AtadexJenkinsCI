@@ -15,18 +15,13 @@ pipeline {
             dir('sylectus-lib-sylectus-geo-services') {
                 git credentialsId: '04a6a3f5-a14e-457d-9a94-a61acfcf7e1b', url: 'https://github.com/Omnitracs/sylectus-lib-sylectus-geo-services.git'
             }
-            dir('sylectus-lib-sylectus-security-util') {
-                git credentialsId: '04a6a3f5-a14e-457d-9a94-a61acfcf7e1b', url: 'https://github.com/Omnitracs/sylectus-lib-sylectus-security-util.git'
-            }
-            dir('sylectus-lib-sylectus') {
-               git credentialsId: '04a6a3f5-a14e-457d-9a94-a61acfcf7e1b', url: 'https://github.com/Omnitracs/sylectus-lib-sylectus.git'
-            }
+            
             //add the repos that sylectus.core depend on
             dir('sylectus-lib-sylectus-security-util'){
                git credentialsId: '04a6a3f5-a14e-457d-9a94-a61acfcf7e1b', url: 'https://github.com/Omnitracs/sylectus-lib-sylectus-security-util.git'
             }
             dir('sylectus-lib-sylectus'){
-               git credentialsId: '04a6a3f5-a14e-457d-9a94-a61acfcf7e1b', url: ' https://github.com/Omnitracs/sylectus-lib-sylectus.git'
+               git credentialsId: '04a6a3f5-a14e-457d-9a94-a61acfcf7e1b', url: 'https://github.com/Omnitracs/sylectus-lib-sylectus.git'
             }
             
             
