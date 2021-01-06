@@ -69,6 +69,7 @@ pipeline {
       
       stage('Zipping the artifact '){
         steps{
+            echo '************************** ZIPPING THE ARTIFACT *************************' 
             powershell '''
             $DateOfBuild = Get-Date -Format FileDate
             $Env = "Staging"
@@ -83,7 +84,7 @@ pipeline {
             
         }
       }
-
+      /*
       stage('Sending the artifact to the CTP Staging Server'){
         steps{
             powershell '''
@@ -95,6 +96,7 @@ pipeline {
             
         }
       }
+      */
 
 
 
