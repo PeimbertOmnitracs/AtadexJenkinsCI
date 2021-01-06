@@ -79,12 +79,15 @@ pipeline {
             robocopy.exe "C:\\Program Files (x86)\\Jenkins\\workspace\\atadex\\sylectus-edi-processor\\EDIHangfireServer\\bin\\Release" ("C:\\Users\\Erick\\Documents\\ATADEX FILES FOR DEPLOY\\"+$ArtifactName+"\\EDIHangfireServer\\Release") /mir /tee
             robocopy.exe "C:\\Program Files (x86)\\Jenkins\\workspace\\atadex\\sylectus-edi-processor\\EDIProcessor\\Config"           ("C:\\Users\\Erick\\Documents\\ATADEX FILES FOR DEPLOY\\"+$ArtifactName+"\\Config") /mir /tee
             
-            Compress-Archive -Path ("C:\\Users\\Erick\\Documents\\ATADEX FILES FOR DEPLOY\\"+$ArtifactName) -DestinationPath ("C:\\Users\\Erick\\Documents\\ATADEX FILES FOR DEPLOY\\"+$ArtifactName) -Force
             '''
             
         }
       }
       /*
+
+Compress-Archive -Path ("C:\\Users\\Erick\\Documents\\ATADEX FILES FOR DEPLOY\\"+$ArtifactName) -DestinationPath ("C:\\Users\\Erick\\Documents\\ATADEX FILES FOR DEPLOY\\"+$ArtifactName) -Force
+            
+
       stage('Sending the artifact to the CTP Staging Server'){
         steps{
             powershell '''
