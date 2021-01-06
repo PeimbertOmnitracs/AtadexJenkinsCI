@@ -63,7 +63,7 @@ pipeline {
       *Trigger the build with every commit to development.
       */
       
-      stage('Build of the solution '){
+      stage('Zipping the artifact '){
         steps{
             powershell '''
             $DateOfBuild = Get-Date -Format FileDate
@@ -75,6 +75,17 @@ pipeline {
             robocopy.exe "C:\\Program Files (x86)\\Jenkins\\workspace\\atadex\\sylectus-edi-processor\\EDIProcessor\\Config"           ("C:\\Users\\Erick\\Documents\\ATADEX FILES FOR DEPLOY\\"+$ArtifactName+"\\Config") /mir /tee
             
             Compress-Archive -Path ("C:\\Users\\Erick\\Documents\\ATADEX FILES FOR DEPLOY\\"+$ArtifactName) -DestinationPath ("C:\\Users\\Erick\\Documents\\ATADEX FILES FOR DEPLOY\\"+$ArtifactName) -Force
+            '''
+            
+        }
+      }
+
+      stage('Sending the artifact to the CTP Staging Server'){
+        steps{
+            powershell '''
+                        
+            robocopy.exe  ("C:\\Users\\Erick\\Documents\\ATADEX FILES FOR DEPLOY\\"+$ArtifactName+".zip")    ("\\10.231.143.35\\e$\\Deploy\\EDIProcessor") /mir /tee
+            
             '''
             
         }
