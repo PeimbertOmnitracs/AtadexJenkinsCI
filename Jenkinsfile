@@ -37,14 +37,11 @@ pipeline {
            bat label: '', script: 'C:\\ProgramData\\chocolatey\\bin\\nuget.exe sources list'
         }
       }
-      stage('Restore Nuget packages'){
-        steps{
-            bat label: '', script: 'C:\\ProgramData\\chocolatey\\bin\\nuget.exe restore sylectus-edi-processor/EDIProcessor.sln'  
-        }
-      }
-      stage('Restore dependencie packages'){
+
+      stage('Restore dependencies nuget packages'){
          steps{
 		   echo '************************** RESTORE DEPENDENCIE PACKAGES *************************' 
+           bat label: '', script: 'C:\\ProgramData\\chocolatey\\bin\\nuget.exe restore sylectus-edi-processor/EDIProcessor.sln'  
            bat label: '', script: 'C:\\ProgramData\\chocolatey\\bin\\nuget.exe restore sylectus-lib-sylectus/trunk/SylectusLibrary.sln'
            bat label: '', script: 'C:\\ProgramData\\chocolatey\\bin\\nuget.exe restore sylectus-lib-sylectus-security-util/trunk/Sylectus.SecurityUtil.sln'
            bat label: '', script: 'C:\\ProgramData\\chocolatey\\bin\\nuget.exe restore sylectus-lib-sylectus-geo-services/trunk/Sylectus.Geoservices.sln'
@@ -92,7 +89,7 @@ pipeline {
             
         }
       }        
-
+/*
       stage('Sending the artifact to the CTP Staging Server'){
         steps{
            echo '************************** SENDING THE ARTIFACT TO CTP SERVER *************************' 
@@ -112,7 +109,7 @@ pipeline {
         }
       }
       
-
+*/
 
 
         
