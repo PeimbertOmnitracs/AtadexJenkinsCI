@@ -84,7 +84,10 @@ pipeline {
             
             Compress-Archive -Path ("C:\\Users\\Erick\\Documents\\ATADEX FILES FOR DEPLOY\\"+$ArtifactName) -DestinationPath ("C:\\Users\\Erick\\Documents\\ATADEX FILES FOR DEPLOY\\"+$ArtifactName) -Force
             $LASTEXITCODE
-            Exit 0
+            if($LASTEXITCODE -eq 1){
+               Exit 0
+            }
+            
             '''
             
         }
