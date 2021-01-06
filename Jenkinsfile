@@ -34,6 +34,7 @@ pipeline {
       }
       stage('add hangfire NugetSource'){
         steps{
+           echo '************************** LIST NUGET SOURCES *************************' 
            bat label: '', script: 'C:\\ProgramData\\chocolatey\\bin\\nuget.exe sources list'
         }
       }
@@ -45,7 +46,7 @@ pipeline {
            bat label: '', script: 'C:\\ProgramData\\chocolatey\\bin\\nuget.exe restore sylectus-lib-sylectus/trunk/SylectusLibrary.sln'
            bat label: '', script: 'C:\\ProgramData\\chocolatey\\bin\\nuget.exe restore sylectus-lib-sylectus-security-util/trunk/Sylectus.SecurityUtil.sln'
            bat label: '', script: 'C:\\ProgramData\\chocolatey\\bin\\nuget.exe restore sylectus-lib-sylectus-geo-services/trunk/Sylectus.Geoservices.sln'
-		   bat label: '', script: 'C:\\ProgramData\\chocolatey\\bin\\nuget.exe restore sylectus-lib-sylectus-core/Sylectus.Core/Sylectus.Core.sln'
+		     bat label: '', script: 'C:\\ProgramData\\chocolatey\\bin\\nuget.exe restore sylectus-lib-sylectus-core/Sylectus.Core/Sylectus.Core.sln'
 
          }
       }
