@@ -1,3 +1,7 @@
+/** This Jenkins pipeline is to make the build of the Atadex Project from the develop branch. It takes all the commits (doesnt cherry-pick)
+   PREREQUISITE: You have to be connected to the VPN so it can copy the files to the CTP Server
+*/
+
 pipeline {
    agent any
    stages {
@@ -86,8 +90,7 @@ pipeline {
             $DateOfBuild = Get-Date -Format FileDate
             $Env = "Staging"
             $ArtifactName= "ATA" + "$DateOfBuild" +"$Env"            
-            robocopy.exe  ("C:\\Users\\Erick\\Documents\\ATADEX FILES FOR DEPLOY\\"+$ArtifactName+".zip")    ("\\10.231.143.35\\e$\\Deploy\\EDIProcessor") /mir /tee
-            
+            robocopy.exe "C:\\Users\\Erick\\Documents\\ATADEX FILES FOR DEPLOY" "\\\\10.231.143.35\\e$\\Deploy\\EDIProcessor" ($ArtifactName+".zip")
             '''
             
         }
