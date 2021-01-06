@@ -91,11 +91,7 @@ pipeline {
             '''
             
         }
-      }
-      /*
-
-
-            
+      }        
 
       stage('Sending the artifact to the CTP Staging Server'){
         steps{
@@ -104,11 +100,17 @@ pipeline {
             $Env = "Staging"
             $ArtifactName= "ATA" + "$DateOfBuild" +"$Env"            
             robocopy.exe "C:\\Users\\Erick\\Documents\\ATADEX FILES FOR DEPLOY" "\\\\10.231.143.35\\e$\\Deploy\\EDIProcessor" ($ArtifactName+".zip")
+            
+            ####Code to allow robocopy to return exit code 1 without failing the jenkins job
+            $LASTEXITCODE
+            if($LASTEXITCODE -eq 1){
+               Exit 0
+            }
             '''
             
         }
       }
-      */
+      
 
 
 
