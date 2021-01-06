@@ -1,5 +1,7 @@
 /** This Jenkins pipeline is to make the build of the Atadex Project from the develop branch. It takes all the commits (doesnt cherry-pick)
    PREREQUISITE: You have to be connected to the VPN so it can copy the files to the CTP Server
+
+   2021.01.06 Robocopy was replaced by xcopy, because Robocopy has exit codes 0 and 1 and thats fine, but Jenkins detects the Exit code 1 as error
 */
 
 pipeline {
@@ -75,17 +77,17 @@ pipeline {
             $Env = "Staging"
             $ArtifactName= "ATA" + "$DateOfBuild" +"$Env"
             
-            robocopy.exe "C:\\Program Files (x86)\\Jenkins\\workspace\\atadex\\sylectus-edi-processor\\EDIAPI\\bin\\Release\\Publish"    ("C:\\Users\\Erick\\Documents\\ATADEX FILES FOR DEPLOY\\"+$ArtifactName+"\\EDIAPI\\Publish") /mir /tee
-            robocopy.exe "C:\\Program Files (x86)\\Jenkins\\workspace\\atadex\\sylectus-edi-processor\\EDIHangfireServer\\bin\\Release" ("C:\\Users\\Erick\\Documents\\ATADEX FILES FOR DEPLOY\\"+$ArtifactName+"\\EDIHangfireServer\\Release") /mir /tee
-            robocopy.exe "C:\\Program Files (x86)\\Jenkins\\workspace\\atadex\\sylectus-edi-processor\\EDIProcessor\\Config"           ("C:\\Users\\Erick\\Documents\\ATADEX FILES FOR DEPLOY\\"+$ArtifactName+"\\Config") /mir /tee
-            
+            xcopy "C:\\Program Files (x86)\\Jenkins\\workspace\\atadex\\sylectus-edi-processor\\EDIAPI\\bin\\Release\\Publish"    ("C:\\Users\\Erick\\Documents\\ATADEX FILES FOR DEPLOY\\"+$ArtifactName+"\\EDIAPI\\Publish") /y
+            xcopy "C:\\Program Files (x86)\\Jenkins\\workspace\\atadex\\sylectus-edi-processor\\EDIHangfireServer\\bin\\Release" ("C:\\Users\\Erick\\Documents\\ATADEX FILES FOR DEPLOY\\"+$ArtifactName+"\\EDIHangfireServer\\Release") /y
+            xcopy "C:\\Program Files (x86)\\Jenkins\\workspace\\atadex\\sylectus-edi-processor\\EDIProcessor\\Config"           ("C:\\Users\\Erick\\Documents\\ATADEX FILES FOR DEPLOY\\"+$ArtifactName+"\\Config") /y
+            Compress-Archive -Path ("C:\\Users\\Erick\\Documents\\ATADEX FILES FOR DEPLOY\\"+$ArtifactName) -DestinationPath ("C:\\Users\\Erick\\Documents\\ATADEX FILES FOR DEPLOY\\"+$ArtifactName) -Force
             '''
             
         }
       }
       /*
 
-Compress-Archive -Path ("C:\\Users\\Erick\\Documents\\ATADEX FILES FOR DEPLOY\\"+$ArtifactName) -DestinationPath ("C:\\Users\\Erick\\Documents\\ATADEX FILES FOR DEPLOY\\"+$ArtifactName) -Force
+
             
 
       stage('Sending the artifact to the CTP Staging Server'){
