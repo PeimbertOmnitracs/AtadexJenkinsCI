@@ -25,9 +25,10 @@ pipeline {
             dir('sylectus-lib-sylectus-security-util'){
                git credentialsId: '04a6a3f5-a14e-457d-9a94-a61acfcf7e1b', url: 'https://github.com/Omnitracs/sylectus-lib-sylectus-security-util.git'
             }
+            /* --looks like syletus-lib-sylectus is not required for edi-processor
             dir('sylectus-lib-sylectus'){
                git credentialsId: '04a6a3f5-a14e-457d-9a94-a61acfcf7e1b', url: ' https://github.com/Omnitracs/sylectus-lib-sylectus.git'
-            }
+            }*/
             
             
          }
