@@ -13,7 +13,7 @@ pipeline {
                 git credentialsId: '04a6a3f5-a14e-457d-9a94-a61acfcf7e1b', branch: 'develop', url: 'https://github.com/Omnitracs/sylectus-edi-processor.git'
             }
             dir('sylectus-log-utils') {
-                git credentialsId: '04a6a3f5-a14e-457d-9a94-a61acfcf7e1b', url: 'https://github.com/Omnitracs/sylectus-log-utils.git'
+                git credentialsId: '04a6a3f5-a14e-457d-9a94-a61acfcf7e1b', branch: 'develop', url: 'https://github.com/Omnitracs/sylectus-log-utils.git'
             }
             dir('sylectus-lib-sylectus-core') {
                 git credentialsId: '04a6a3f5-a14e-457d-9a94-a61acfcf7e1b', url: 'https://github.com/Omnitracs/sylectus-lib-sylectus-core.git'
