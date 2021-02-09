@@ -58,7 +58,8 @@ pipeline {
       stage('Build the Project'){
         steps{
             echo '************************** BUILD DEPENDENCIES *************************' 
-            bat "\"${tool 'MSBuildLocal'}\" sylectus-edi-processor/EDIProcessor.sln /p:Configuration=Release;Platform=\"Any CPU\";TargetFrameworkVersion=v4.6 /target:Clean,Rebuild /p:ProductVersion=1.0.0.${env.BUILD_NUMBER}"
+            bat "\"${tool 'MSBuildLocal'}\" sylectus-edi-processor/EDIProcessor.sln /p:Configuration=Release;Platform=\"Any CPU\";TargetFrameworkVersion=v4.6 /target:clean /p:ProductVersion=1.0.0.${env.BUILD_NUMBER}"
+            bat "\"${tool 'MSBuildLocal'}\" sylectus-edi-processor/EDIProcessor.sln /p:Configuration=Release;Platform=\"Any CPU\";TargetFrameworkVersion=v4.6 /target:rebuild /p:ProductVersion=1.0.0.${env.BUILD_NUMBER}"
             bat "\"${tool 'MSBuildLocal'}\" sylectus-edi-processor/EDIAPI/EDIAPI.csproj /p:DeployOnBuild=true /p:PublishProfile=FolderProfile"
 
         }
